@@ -107,6 +107,11 @@ buttons.forEach((button, index) => {
       player.src = "";
       player.contentWindow.postMessage('{"event":"command","func":"stopVideo","args":""}', '*');
     });
+    var videos = document.getElementsByTagName("video");
+for (var i = 0; i < videos.length; i++) {
+  videos[i].pause();
+}
+
     videoPlayers[index].src = videos[index];
     for (let i = 0; i < buttons.length; i++) {
       buttons[i].classList.remove("active");
