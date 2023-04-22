@@ -95,32 +95,41 @@
         <li><a href="#" onclick="mostrarVideo('video8');">Video 8</a></li>
     </nav>
     <script>
-  const videos = [  "https://www.youtube.com/embed/3K-aggRMR8I",  "https://www.youtube.com/embed/Ad-hRzqsuz8",  "https://www.youtube.com/embed/S6CGZBFYOTE",  "https://www.youtube.com/embed/4-UbHw8eDzM",  "https://www.youtube.com/embed/ZBe-SR-DhK0",  "https://www.youtube.com/embed/WPywfWMPgt4",  "https://www.youtube.com/embed/lRxRaZz3sGU",  "https://www.youtube.com/embed/QzpfI139y-Q"];
+const videos = [
+  "https://www.youtube.com/embed/3K-aggRMR8I",
+  "https://www.youtube.com/embed/Ad-hRzqsuz8",
+  "https://www.youtube.com/embed/S6CGZBFYOTE",
+  "https://www.youtube.com/embed/4-UbHw8eDzM",
+  "https://www.youtube.com/embed/ZBe-SR-DhK0",
+  "https://www.youtube.com/embed/WPywfWMPgt4",
+  "https://www.youtube.com/embed/lRxRaZz3sGU",
+  "https://www.youtube.com/embed/QzpfI139y-Q"
+];
 
-const videoPlayers = document.querySelectorAll("iframe");
+const videoPlayer = document.getElementById("video1"); // Se define el elemento del reproductor de video
+const videoPlayer = document.getElementById("video2");
+const videoPlayer = document.getElementById("video3");
+const videoPlayer = document.getElementById("video4");
+const videoPlayer = document.getElementById("video5");
+const videoPlayer = document.getElementById("video6");
+const videoPlayer = document.getElementById("video7");
+const videoPlayer = document.getElementById("video8");
 
-const buttons = document.querySelectorAll(".button");
+const buttons = document.querySelectorAll("a");
 
 buttons.forEach((button, index) => {
   button.addEventListener("click", () => {
-    videoPlayers.forEach((player) => {
-      player.src = "";
-      player.contentWindow.postMessage('{"event":"command","func":"stopVideo","args":""}', '*');
-    });
-    var videos = document.getElementsByTagName("video");
-for (var i = 0; i < videos.length; i++) {
-  videos[i].pause();
-}
-
-    videoPlayers[index].src = videos[index];
+    videoPlayer.src = videos[index];
     for (let i = 0; i < buttons.length; i++) {
       buttons[i].classList.remove("active");
     }
     button.classList.add("active");
-    videoPlayers[index].contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+    videoPlayer.pause();
+    videoPlayer.currentTime = 0;
+    videoPlayer.load();
+    videoPlayer.play();
   });
 });
-
       function mostrarVideo(videoId) {
         // ocultar todos los videos
         var videos = document.getElementsByTagName("iframe");
