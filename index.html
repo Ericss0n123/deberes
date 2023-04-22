@@ -3,6 +3,37 @@
   <head>
     <meta charset="utf-8">
     <title>Video de YouTube con menú de navegación</title>
+    <script>
+  const videos = [
+    "https://www.youtube.com/embed/3K-aggRMR8I",
+    "https://www.youtube.com/embed/Ad-hRzqsuz8",
+    "https://www.youtube.com/embed/S6CGZBFYOTE",
+    "https://www.youtube.com/embed/4-UbHw8eDzM",
+    "https://www.youtube.com/embed/ZBe-SR-DhK0",
+    "https://www.youtube.com/embed/WPywfWMPgt4",
+    "https://www.youtube.com/embed/lRxRaZz3sGU",
+    "https://www.youtube.com/embed/QzpfI139y-Q"
+  ];
+
+  const videoPlayer = document.getElementById("video-player");
+
+  const buttons = document.querySelectorAll(".button");
+
+  buttons.forEach((button, index) => {
+    button.addEventListener("click", () => {
+      videoPlayer.src = videos[index];
+      for (let i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove("active");
+      }
+      button.classList.add("active");
+      videoPlayer.pause();
+      videoPlayer.currentTime = 0;
+      videoPlayer.load();
+      videoPlayer.play();
+    });
+  });
+</script>
+
     <style>
       body {
         margin: 0;
